@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class BluetoothSetup extends AppCompatActivity {
+import com.imi_gma.notiply.R;
+
+public class ConnectionSetup extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

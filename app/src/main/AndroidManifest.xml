@@ -9,6 +9,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Notiply">
         <activity
+            android:name=".UserSetup"
+            android:exported="false" />
+        <activity
             android:name=".DrawingPage"
             android:exported="false" />
         <activity

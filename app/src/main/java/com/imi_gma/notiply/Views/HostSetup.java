@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import com.imi_gma.notiply.R;
+
 public class HostSetup extends AppCompatActivity {
 
     @Override

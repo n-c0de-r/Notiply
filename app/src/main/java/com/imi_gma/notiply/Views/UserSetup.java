@@ -6,11 +6,11 @@ import android.os.Bundle;
 
 import com.imi_gma.notiply.R;
 
-public class FindPads extends AppCompatActivity {
+public class UserSetup extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_find_pads);
+        setContentView(R.layout.activity_user_setup);
     }
 }
