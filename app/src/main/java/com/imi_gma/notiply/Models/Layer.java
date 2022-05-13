@@ -1,5 +1,7 @@
 package com.imi_gma.notiply.Models;
 
+import android.graphics.Color;
+
 /**
  * Saves User's pixel changes to the canvas.
  * Exchanges these changes with host device.
@@ -9,6 +11,17 @@ public class Layer implements DrawableInterface {
     private int[] argb;
     private int height;
     private int width;
+
+    @Override
+    public void draw(int x, int y, int width, Color color) {
+        int pos = y * width + x;
+        // argb[pos] = Color.valueOf(color);
+    }
+
+    @Override
+    public void erase(int x, int y, int width) {
+        int pos = y * width + x;
+    }
 
     @Override
     public int[] getARGB() {
