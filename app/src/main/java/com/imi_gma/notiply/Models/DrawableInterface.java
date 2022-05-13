@@ -4,7 +4,7 @@ package com.imi_gma.notiply.Models;
  * Interface to different drawable classes,
  * such as Image and Layer.
  */
-public interface Drawable {
+public interface DrawableInterface {
     /**
      * Get array of pixels from the drawable object.
      * @return  Array of pixels.

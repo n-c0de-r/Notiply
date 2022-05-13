@@ -3,7 +3,7 @@ package com.imi_gma.notiply.Models;
 /**
  * Merges all pixel changes of all Users here.
  */
-public class Image implements Drawable {
+public class Image implements DrawableInterface {
     private int[] argb;
     private int height;
     private int width;

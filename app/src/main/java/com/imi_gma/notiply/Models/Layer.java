@@ -5,7 +5,7 @@ package com.imi_gma.notiply.Models;
  * Exchanges these changes with host device.
  * Merges changes down to image class.
  */
-public class Layer implements Drawable {
+public class Layer implements DrawableInterface {
     private int[] argb;
     private int height;
     private int width;

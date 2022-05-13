@@ -2,7 +2,7 @@ package com.imi_gma.notiply.Models;
 
 public class User {
     private String userName;
-    // Array of Layers? User=1 & Host=#ofUsers
+    private DrawableInterface[] drawings;
 
     /**
      * Gets users current name.
