@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import com.imi_gma.notiply.R;
 
-public class FindPads extends AppCompatActivity {
+public class FindPage extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
