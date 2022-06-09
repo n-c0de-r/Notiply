@@ -1,52 +1,54 @@
 package com.imi_gma.notiply.Models;
 
-import android.graphics.Color;
+import android.graphics.Bitmap;
 
-/**
- * Merges all pixel changes of all Users here.
- */
-public class Image implements DrawableInterface {
-    private int[] argb;
-    private int height;
-    private int width;
+public interface Image {
+    /**
+     * Initialize non-final fields
+     * @param width     window width
+     * @param height    window height
+     */
+    void init(int width, int height);
 
-    @Override
-    public void draw(int x, int y, int width, Color color) {
-        return;
-    }
+    /**
+     * Returns the bitmap object
+     * @return bitmap
+     */
+    Bitmap getBitmap();
 
-    @Override
-    public void erase(int x, int y, int width) {
-        return;
-    }
+    /**
+     * Sets the current brush color
+     * @param color
+     */
+    void setColor(int color);
 
-    @Override
-    public int[] getARGB() {
-        return argb;
-    }
+    /**
+     * Undo the last stroke.
+     */
+    void undo();
 
-    @Override
-    public int getHeight() {
-        return height;
-    }
+    /**
+     * Fills canvas with background color and clear user's ArrayList
+     * User cannot erase other's objects ever
+     */
+    void clear();
 
-    @Override
-    public int getWidth() {
-        return width;
-    }
+    /**
+     * User just touched the screen
+     * @param x     x position of touch
+     * @param y     y position of touch
+     */
+    void touchStart(float x, float y);
 
-    @Override
-    public void setARGB(int[] newARGB) {
-        this.argb = newARGB;
-    }
+    /**
+     * Handle the movement performed after the first touch
+     * @param x     x position of touch
+     * @param y     y position of touch
+     */
+    void touchMove(float x, float y);
 
-    @Override
-    public void setHeight(int newHeight) {
-        this.height = newHeight;
-    }
-
-    @Override
-    public void setWidth(int newWidth) {
-        this.width = newWidth;
-    }
+    /**
+     * Touch ended, draw path to the last known position
+     */
+    void touchUp();
 }

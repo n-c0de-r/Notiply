@@ -3,8 +3,20 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/HTW-IMI/AndroidStudioProjects/Notiply/app/src/main/res/drawable/ic_brush.xml" value="0.1355" />
+        <entry key="..\:/Users/HTW-IMI/AndroidStudioProjects/Notiply/app/src/main/res/drawable/ic_delete.xml" value="0.1355" />
+        <entry key="..\:/Users/HTW-IMI/AndroidStudioProjects/Notiply/app/src/main/res/drawable/ic_join.xml" value="0.1355" />
+        <entry key="..\:/Users/HTW-IMI/AndroidStudioProjects/Notiply/app/src/main/res/drawable/ic_peers.xml" value="0.1355" />
+        <entry key="..\:/Users/HTW-IMI/AndroidStudioProjects/Notiply/app/src/main/res/drawable/ic_save.xml" value="0.1355" />
+        <entry key="..\:/Users/HTW-IMI/AndroidStudioProjects/Notiply/app/src/main/res/drawable/ic_undo.xml" value="0.1355" />
         <entry key="..\:/Users/HTW-IMI/AndroidStudioProjects/Notiply/app/src/main/res/layout/activity_bluetooth_setup.xml" value="0.1" />
+        <entry key="..\:/Users/HTW-IMI/AndroidStudioProjects/Notiply/app/src/main/res/layout/activity_drawing_page.xml" value="0.17083333333333334" />
         <entry key="..\:/Users/HTW-IMI/AndroidStudioProjects/Notiply/app/src/main/res/layout/activity_find_pads.xml" value="0.1" />
+        <entry key="..\:/Users/HTW-IMI/AndroidStudioProjects/Notiply/app/src/main/res/layout/activity_find_page.xml" value="0.22" />
+        <entry key="..\:/Users/HTW-IMI/AndroidStudioProjects/Notiply/app/src/main/res/layout/activity_host_setup.xml" value="0.17083333333333334" />
+        <entry key="..\:/Users/HTW-IMI/AndroidStudioProjects/Notiply/app/src/main/res/layout/activity_main.xml" value="0.17083333333333334" />
+        <entry key="..\:/Users/HTW-IMI/AndroidStudioProjects/Notiply/app/src/main/res/layout/activity_user_setup.xml" value="0.17083333333333334" />
+        <entry key="..\:/Users/HTW-IMI/AndroidStudioProjects/Notiply/app/src/main/res/menu/draw_menu.xml" value="0.17083333333333334" />
       </map>
     </option>
   </component>

@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Notiply</string>
+    <string name="strButtonPageJoin">Join a Page</string>
+    <string name="strButtonPageHost">Host a Page</string>
+    <string name="strButtonSaveUsername">Save Username</string>
+    <string name="strWelcomeMessage">Welcome to Notiply.\n\nBefore you start,\nplease set your user name.</string>
+    <string name="strInfoColorPicker">Pick a color to draw with here.</string>
+    <string name="strInfoJoinMode">You can look for hosted pages to join and edit it with others</string>
+    <string name="strInfoPaintDelete">Delete everything you draw.</string>
+    <string name="strLabelColorPick">Select a color</string>
+    <string name="strLabelPages">Main Menu</string>
+    <string name="strLabelUserName">User Name</string>
 </resources>

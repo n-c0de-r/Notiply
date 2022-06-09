@@ -6,4 +6,167 @@
     android:layout_height="match_parent"
     tools:context=".Views.DrawingPage">
 
+    <com.imi_gma.notiply.Models.ImageImpl
+        android:id="@+id/imageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textPageName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Page Name Here"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnPaintDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:clickable="true"
+        android:contentDescription="@string/strInfoPaintDelete"
+        android:focusable="true"
+        android:src="@drawable/ic_delete"
+        app:backgroundTint="@color/teal_700"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnColorPicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="8dp"
+        android:clickable="true"
+        android:contentDescription="@string/strInfoColorPicker"
+        android:focusable="true"
+        android:src="@drawable/ic_palette"
+        app:backgroundTint="@color/purple_500"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnColorBlack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        app:backgroundTint="@color/black"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toTopOf="@+id/btnColorPicker"
+        app:layout_constraintStart_toStartOf="@+id/btnColorPicker" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnColorRed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        app:backgroundTint="@color/red"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toTopOf="@+id/btnColorBlack"
+        app:layout_constraintStart_toStartOf="@+id/btnColorBlack" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnColorGreen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        app:backgroundTint="@color/green"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toTopOf="@+id/btnColorRed"
+        app:layout_constraintStart_toStartOf="@+id/btnColorRed" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnColorYellow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        app:backgroundTint="@color/yellow"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toTopOf="@+id/btnColorBlue"
+        app:layout_constraintStart_toStartOf="@+id/btnColorBlue" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnColorBlue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        app:backgroundTint="@color/blue"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toTopOf="@+id/btnColorGreen"
+        app:layout_constraintStart_toStartOf="@+id/btnColorGreen" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnPaintBrush"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:src="@drawable/ic_brush"
+        app:backgroundTint="@color/purple_500"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/textColorBlack"
+        android:layout_width="61dp"
+        android:layout_height="18dp"
+        android:layout_marginBottom="16dp"
+        android:text="Black"
+        app:layout_constraintBottom_toBottomOf="@+id/btnColorBlack"
+        app:layout_constraintStart_toEndOf="@+id/btnColorBlack" />
+
+    <TextView
+        android:id="@+id/textColorRed"
+        android:layout_width="61dp"
+        android:layout_height="18dp"
+        android:layout_marginBottom="16dp"
+        android:text="Red"
+        app:layout_constraintBottom_toBottomOf="@+id/btnColorRed"
+        app:layout_constraintStart_toEndOf="@+id/btnColorRed" />
+
+    <TextView
+        android:id="@+id/textColorGreen"
+        android:layout_width="61dp"
+        android:layout_height="18dp"
+        android:layout_marginBottom="16dp"
+        android:text="Green"
+        app:layout_constraintBottom_toBottomOf="@+id/btnColorGreen"
+        app:layout_constraintStart_toEndOf="@+id/btnColorGreen" />
+
+    <TextView
+        android:id="@+id/textColorBlue"
+        android:layout_width="61dp"
+        android:layout_height="18dp"
+        android:layout_marginBottom="16dp"
+        android:text="Blue"
+        app:layout_constraintBottom_toBottomOf="@+id/btnColorBlue"
+        app:layout_constraintStart_toEndOf="@+id/btnColorBlue" />
+
+    <TextView
+        android:id="@+id/textColorYellow"
+        android:layout_width="61dp"
+        android:layout_height="18dp"
+        android:layout_marginBottom="16dp"
+        android:text="Yellow"
+        app:layout_constraintBottom_toBottomOf="@+id/btnColorYellow"
+        app:layout_constraintStart_toEndOf="@+id/btnColorYellow" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

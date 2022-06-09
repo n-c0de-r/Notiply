@@ -1,44 +1,49 @@
 package com.imi_gma.notiply.Models;
 
-import android.graphics.Color;
+import android.graphics.Path;
 
 /**
- * Data class of the drawing pixels.
- * Initial color is black, line width is 1px.
+ * Class which holds the path, color, and stroke to draw
  */
-public class Brush {
-    private Color brushColor = new Color();
-    private int brushWidth = 1;
+class Brush {
+    private final int color;
+    private final int width;
+
+    private final Path path;
 
     /**
-     * Gets the currently set brush color.
-     * @return  Current brush color.
+     * Constructor for the DrawPath class.
+     * @param color
+     * @param width
+     * @param path
      */
-    public Color getBrushColor() {
-        return brushColor;
+    public Brush(int color, int width, Path path) {
+        this.color = color;
+        this.width = width;
+        this.path = path;
     }
 
     /**
-     * Gets the currently set brush width.
-     * @return  Current brush width as integer.
+     * Get the color of the path to be drawn.
+     * @return int  color to draw with
      */
-    public int getBrushWidth() {
-        return brushWidth;
+    public int getColor() {
+        return color;
     }
 
     /**
-     * Sets the brush color to a new color
-     * @param newColor  New color to set.
+     * Returns the width of the path to be drawn.
+     * @return int  brush width
      */
-    public void setBrushColor(Color newColor) {
-        brushColor = newColor;
+    public int getWidth() {
+        return width;
     }
 
     /**
-     * Sets the brush color to a new width.
-     * @param newWidth  New width to set.
+     * Returns the path object to be drawn.
+     * @return Path path to draw
      */
-    public void setBrushWidth(int newWidth) {
-        brushWidth = newWidth;
+    public Path getPath() {
+        return path;
     }
 }
