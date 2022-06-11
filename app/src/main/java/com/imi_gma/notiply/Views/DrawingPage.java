@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -54,6 +53,7 @@ public class DrawingPage extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
+        String infoText;
         switch (item.getItemId()) {
             case R.id.menu_undo:
                 inputHandler.undoStroke();
@@ -62,6 +62,8 @@ public class DrawingPage extends AppCompatActivity {
                 inputHandler.clearImage();
                 return true;
             case R.id.menu_save:
+                infoText = inputHandler.saveImage();
+                Toast.makeText(this, "Saved in " + infoText, Toast.LENGTH_SHORT).show();
                 inputHandler.saveImage();
                 return true;
             default:

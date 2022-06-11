@@ -1,6 +1,7 @@
 package com.imi_gma.notiply.Controls;
 
 import android.graphics.Bitmap;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.widget.Toast;
 
@@ -56,6 +57,7 @@ public class InputHandlerImpl implements InputHandler{
     @Override
     public String saveImage() {
         Bitmap bitmap = image.getBitmap();
+        String str = persist.saveImage(bitmap);
         return persist.saveImage(bitmap);
     }
 }

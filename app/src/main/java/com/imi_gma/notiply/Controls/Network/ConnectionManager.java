@@ -18,11 +18,13 @@ public class ConnectionManager extends Thread implements Connection{
     public ConnectionManager(InetAddress hostAddress, int port) {
         client = new Client(hostAddress, port);
         server = new Server(port);
+        client.start();
+        server.start();
     }
 
     @Override
-    public void sendData() {
-
+    public void sendData(byte[] bytes) {
+        client.senderReceiver.write(bytes);
     }
 
     @Override

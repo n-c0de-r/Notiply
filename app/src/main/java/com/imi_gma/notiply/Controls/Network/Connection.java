@@ -5,7 +5,7 @@ public interface Connection {
     /**
      * Sends data to connected peers.
      */
-    void sendData();
+    void sendData(byte[] bytes);
 
     /**
      * Receives data from connected peers.

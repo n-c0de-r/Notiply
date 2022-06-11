@@ -22,6 +22,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.imi_gma.notiply.Controls.Network.Connection;
+import com.imi_gma.notiply.Controls.Network.ConnectionManager;
 import com.imi_gma.notiply.Controls.Network.WifiDirectBroadcastReceiver;
 import com.imi_gma.notiply.R;
 
@@ -66,15 +68,8 @@ public class FindPage extends AppCompatActivity {
     String[] deviceNames;
     WifiP2pDevice[] deviceArray;
 
-
+    Connection connection;
     Handler handler;
-    Server server;
-    Client client;
-    SendReceive sendReceive;
-
-    private boolean isHost;
-
-    Socket socket;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -168,20 +163,9 @@ public class FindPage extends AppCompatActivity {
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ExecutorService executorService = Executors.newSingleThreadExecutor();
                 String msg = inputText.getText().toString();
-                sendReceive.write(msg.getBytes());
-
-//                executorService.execute(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        if(msg != null && isHost){
-//                            server.write(msg.getBytes());
-//                        } else if (msg != null && !isHost) {
-//                            client.write(msg.getBytes());
-//                        }
-//                    }
-//                });
+                connection.sendData(msg.getBytes());
+                //sendReceive.write(msg.getBytes());
             }
         });
 
@@ -237,98 +221,12 @@ public class FindPage extends AppCompatActivity {
 
         connectionInfoListener = (wifiP2pInfo -> {
             final InetAddress groupOwnerAddress = wifiP2pInfo.groupOwnerAddress;
-
             if (wifiP2pInfo.groupFormed && wifiP2pInfo.isGroupOwner) {
                 connectionStatus.setText("Host");
-                server = new Server();
-                server.start();
-            } else if (wifiP2pInfo.isGroupOwner) {
+            } else if (wifiP2pInfo.groupFormed && !wifiP2pInfo.isGroupOwner) {
                 connectionStatus.setText("Client");
-                client = new Client(groupOwnerAddress);
-                client.start();
             }
+            connection = new ConnectionManager(groupOwnerAddress, 8888);
         });
-    }
-
-    // INNER CLASSES
-    private class Client extends Thread{
-        Socket socket;
-        String hostAdd;
-
-        public Client(InetAddress hostAddress) {
-            hostAdd = hostAddress.getHostAddress();
-            socket = new Socket();
-        }
-
-        @Override
-        public void run() {
-            try {
-                socket.connect(new InetSocketAddress(hostAdd,8888), 500);
-                sendReceive = new SendReceive(socket);
-                sendReceive.start();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    private class Server extends Thread {
-        Socket socket;
-        ServerSocket serverSocket;
-
-        @Override
-        public void run() {
-            try {
-                serverSocket = new ServerSocket(8888);
-                socket = serverSocket.accept();
-                sendReceive = new SendReceive(socket);
-                sendReceive.start();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-        }
-    }
-
-    private class SendReceive extends Thread {
-        private Socket socket;
-        private InputStream inputStream;
-        private OutputStream outputStream;
-
-        public SendReceive(Socket socket) {
-            this.socket = socket;
-
-            try {
-                inputStream = socket.getInputStream();
-                outputStream = socket.getOutputStream();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-        @Override
-        public void run() {
-            byte[] buffer = new byte[1024];
-            int bytes;
-
-            while(socket != null) {
-                try {
-                    bytes = inputStream.read(buffer);
-                    if (bytes > 0) {
-                        handler.obtainMessage(MESSAGE_READ, bytes,-1, buffer).sendToTarget();
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
-        public void write(byte[] bytes) {
-            try {
-                outputStream.write(bytes);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
     }
 }

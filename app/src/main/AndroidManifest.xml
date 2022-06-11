@@ -34,9 +34,6 @@
             android:name=".Views.DrawingPage"
             android:exported="false" />
         <activity
-            android:name=".Views.HostSetup"
-            android:exported="false" />
-        <activity
             android:name=".Views.FindPage"
             android:exported="false" />
         <activity
