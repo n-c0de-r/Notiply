@@ -1,7 +1,11 @@
 package com.imi_gma.notiply.Views;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -15,6 +19,8 @@ import com.imi_gma.notiply.Models.ImageImpl;
 import com.imi_gma.notiply.R;
 
 public class DrawingPage extends AppCompatActivity {
+    public static final int READ_STORAGE_CODE = 108;
+    public static final int WRITE_STORAGE_CODE = 109;
 
     InputHandler inputHandler;
     FloatingActionButton btnPaintBrush,btnColorPicker, btnPaintDelete,
@@ -62,10 +68,12 @@ public class DrawingPage extends AppCompatActivity {
                 inputHandler.clearImage();
                 return true;
             case R.id.menu_save:
-                infoText = inputHandler.saveImage();
-                Toast.makeText(this, "Saved in " + infoText, Toast.LENGTH_SHORT).show();
-                inputHandler.saveImage();
-                return true;
+                if (isWriteStoragePermissionGranted()) {
+                    infoText = inputHandler.saveImage();
+                    Toast.makeText(this, "Saved in " + infoText, Toast.LENGTH_SHORT).show();
+                    inputHandler.saveImage();
+                    return true;
+                }
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -76,11 +84,11 @@ public class DrawingPage extends AppCompatActivity {
         btnColorPicker = findViewById(R.id.btnColorPicker);
         btnPaintDelete = findViewById(R.id.btnPaintDelete);
 
-        btnColorBlack = findViewById(R.id.btnColorBlack);
-        btnColorBlue = findViewById(R.id.btnColorBlue);
-        btnColorGreen = findViewById(R.id.btnColorGreen);
-        btnColorRed = findViewById(R.id.btnColorRed);
-        btnColorYellow = findViewById(R.id.btnColorYellow);
+//        btnColorBlack = findViewById(R.id.btnColorBlack);
+//        btnColorBlue = findViewById(R.id.btnColorBlue);
+//        btnColorGreen = findViewById(R.id.btnColorGreen);
+//        btnColorRed = findViewById(R.id.btnColorRed);
+//        btnColorYellow = findViewById(R.id.btnColorYellow);
     }
 
     private void setListeners() {
@@ -96,27 +104,39 @@ public class DrawingPage extends AppCompatActivity {
             inputHandler.clearImage();
         });
 
-        btnColorBlack.setOnClickListener(view -> {
-            Toast.makeText(this, "" + R.color.black, Toast.LENGTH_SHORT).show();
-            inputHandler.setBrushColor(R.color.black);
-        });
+//        btnColorBlack.setOnClickListener(view -> {
+//            inputHandler.setBrushColor(R.color.black);
+//        });
+//
+//        btnColorBlue.setOnClickListener(view -> {
+//            inputHandler.setBrushColor(R.color.blue);
+//        });
+//
+//        btnColorGreen.setOnClickListener(view -> {
+//            inputHandler.setBrushColor(R.color.green);
+//        });
+//
+//        btnColorRed.setOnClickListener(view -> {
+//            inputHandler.setBrushColor(R.color.red);
+//        });
+//
+//        btnColorYellow.setOnClickListener(view -> {
+//            inputHandler.setBrushColor(R.color.yellow);
+//        });
+    }
 
-        btnColorBlue.setOnClickListener(view -> {
-            int color = (int) R.color.green & 0xFF;
-            Toast.makeText(this, "" + color, Toast.LENGTH_SHORT).show();
-            inputHandler.setBrushColor(color);
-        });
-
-        btnColorGreen.setOnClickListener(view -> {
-            inputHandler.setBrushColor(R.color.green);
-        });
-
-        btnColorRed.setOnClickListener(view -> {
-            inputHandler.setBrushColor(R.color.red);
-        });
-
-        btnColorYellow.setOnClickListener(view -> {
-            inputHandler.setBrushColor(R.color.yellow);
-        });
+    private  boolean isWriteStoragePermissionGranted() {
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    == PackageManager.PERMISSION_GRANTED) {
+                return true;
+            } else {
+                requestPermissions( new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, WRITE_STORAGE_CODE);
+                return false;
+            }
+        }
+        else { //permission is automatically granted on sdk<23 upon installation
+            return true;
+        }
     }
 }

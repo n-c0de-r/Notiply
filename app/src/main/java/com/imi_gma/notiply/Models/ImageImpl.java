@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class ImageImpl extends View implements Image {
 
     private static final int BG_COLOR = Color.WHITE;
-    private static final int DEFAULT_WIDTH = 5;
+    private static final int DEFAULT_WIDTH = 10;
     private static final int TOUCH_TOLERANCE = 5;
 
     private final ArrayList<Brush> userPaths;
@@ -156,11 +156,11 @@ public class ImageImpl extends View implements Image {
 
     /**
      * Draws latest path to screen
-     * @param paramCanvas   has to be there. unused!
+     * @param paramCanvas
      */
     @Override
     protected void onDraw(Canvas paramCanvas) {
-        canvas.save();
+        paramCanvas.save();
 
         // Guard against accidental access
         if (userPaths.size() != 0) {
@@ -170,7 +170,7 @@ public class ImageImpl extends View implements Image {
             drawPath(lastPath);
         }
         // draw the bitmap to the canvas
-        canvas.drawBitmap(bitmap, 0, 0, paintBrush);
-        canvas.restore();
+        paramCanvas.drawBitmap(bitmap, 0, 0, paintBrush);
+        paramCanvas.restore();
     }
 }

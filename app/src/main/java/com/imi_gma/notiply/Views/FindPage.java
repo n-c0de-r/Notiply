@@ -11,6 +11,7 @@ import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.net.wifi.p2p.WifiP2pConfig;
 import android.net.wifi.p2p.WifiP2pDevice;
+import android.net.wifi.p2p.WifiP2pInfo;
 import android.net.wifi.p2p.WifiP2pManager;
 import android.os.Bundle;
 import android.os.Handler;
@@ -27,18 +28,10 @@ import com.imi_gma.notiply.Controls.Network.ConnectionManager;
 import com.imi_gma.notiply.Controls.Network.WifiDirectBroadcastReceiver;
 import com.imi_gma.notiply.R;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.net.InetAddress;
-import java.net.InetSocketAddress;
-import java.net.ServerSocket;
-import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public class FindPage extends AppCompatActivity {
 
@@ -165,7 +158,6 @@ public class FindPage extends AppCompatActivity {
             public void onClick(View view) {
                 String msg = inputText.getText().toString();
                 connection.sendData(msg.getBytes());
-                //sendReceive.write(msg.getBytes());
             }
         });
 
@@ -192,18 +184,25 @@ public class FindPage extends AppCompatActivity {
             }
         };
 
+        int wifiPermissionStatus = ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_WIFI_STATE);
+        // Check Permission for Location and GPS
+        int locationPermissionStatus = ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION);
+        // Check Permission for Location and GPS
+
+        if (wifiPermissionStatus == PackageManager.PERMISSION_DENIED) {
+            String permission = Manifest.permission.ACCESS_WIFI_STATE;
+            ActivityCompat.requestPermissions(this, new String[] {permission}, ACCESS_WIFI_CODE);
+        }
+
+        if (locationPermissionStatus == PackageManager.PERMISSION_DENIED) {
+            String permission = Manifest.permission.ACCESS_FINE_LOCATION;
+            ActivityCompat.requestPermissions(this, new String[] {permission}, FINE_LOCATION_CODE);
+        }
 
         peersList.setOnItemClickListener((adapterView, view, i, l) -> {
             final WifiP2pDevice device = deviceArray[i];
             WifiP2pConfig config = new WifiP2pConfig();
             config.deviceAddress = device.deviceAddress;
-
-            int permissionStatus = ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_WIFI_STATE);
-
-            if (permissionStatus == PackageManager.PERMISSION_DENIED) {
-                String permission = Manifest.permission.ACCESS_WIFI_STATE;
-                ActivityCompat.requestPermissions(this, new String[] {permission}, ACCESS_WIFI_CODE);
-            } else {
 
                 p2pManager.connect(p2pChannel, config, new WifiP2pManager.ActionListener() {
                     @Override
@@ -216,17 +215,18 @@ public class FindPage extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Not Connected", Toast.LENGTH_SHORT).show();
                     }
                 });
-            }
         });
 
+        // TODO connection is never set! Code never reached, NullPointerException
         connectionInfoListener = (wifiP2pInfo -> {
             final InetAddress groupOwnerAddress = wifiP2pInfo.groupOwnerAddress;
-            if (wifiP2pInfo.groupFormed && wifiP2pInfo.isGroupOwner) {
-                connectionStatus.setText("Host");
-            } else if (wifiP2pInfo.groupFormed && !wifiP2pInfo.isGroupOwner) {
-                connectionStatus.setText("Client");
-            }
-            connection = new ConnectionManager(groupOwnerAddress, 8888);
-        });
+                if (wifiP2pInfo.groupFormed && wifiP2pInfo.isGroupOwner) {
+                    connectionStatus.setText("Host");
+                } else if (wifiP2pInfo.groupFormed && !wifiP2pInfo.isGroupOwner) {
+                    connectionStatus.setText("Client");
+                }
+                connection = new ConnectionManager(groupOwnerAddress, 8888);
+            });
+
     }
 }
