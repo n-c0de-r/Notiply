@@ -219,14 +219,15 @@ public class FindPage extends AppCompatActivity {
 
         // TODO connection is never set! Code never reached, NullPointerException
         connectionInfoListener = (wifiP2pInfo -> {
+            Toast.makeText(getApplicationContext(), "Before connection", Toast.LENGTH_LONG).show();
             final InetAddress groupOwnerAddress = wifiP2pInfo.groupOwnerAddress;
-                if (wifiP2pInfo.groupFormed && wifiP2pInfo.isGroupOwner) {
-                    connectionStatus.setText("Host");
-                } else if (wifiP2pInfo.groupFormed && !wifiP2pInfo.isGroupOwner) {
-                    connectionStatus.setText("Client");
-                }
-                connection = new ConnectionManager(groupOwnerAddress, 8888);
-            });
-
+            if (wifiP2pInfo.groupFormed && wifiP2pInfo.isGroupOwner) {
+                connectionStatus.setText("Host");
+            } else if (wifiP2pInfo.groupFormed && !wifiP2pInfo.isGroupOwner) {
+                connectionStatus.setText("Client");
+            }
+            connection = new ConnectionManager(groupOwnerAddress, 8888);
+            Toast.makeText(getApplicationContext(), "Created connection " + connection, Toast.LENGTH_SHORT).show();
+        });
     }
 }

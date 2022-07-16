@@ -1,6 +1,8 @@
 package com.imi_gma.notiply.Controls;
 
 import android.Manifest;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Build;
@@ -26,13 +28,26 @@ public class Persistence {
 
     private final File subDirectory;
 
+    private static Persistence instance = null;
+
     /**
      * Constructor which finds the sub-directory to be exported to.
      */
-    public Persistence() {
+    private Persistence() {
         // get the output storage directory and find the sub-directory.
         File storageDirectory = Environment.getExternalStorageDirectory();
         subDirectory = new File(storageDirectory.toString() + DIRECTORY_PATH);
+    };
+
+    /**
+     * Singleton Pattern
+     * @return  Instance of Persistence
+     */
+    public static Persistence getInstance() {
+        if (instance == null) {
+            instance = new Persistence();
+        }
+        return(instance);
     }
 
     /**
@@ -56,6 +71,21 @@ public class Persistence {
             return DIRECTORY_PATH + filePath;
         }
         return null;
+    }
+
+    public void saveUserData(SharedPreferences sp, String name) {
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString("name", name);
+        editor.commit();
+        editor.apply();
+    }
+
+    public String getUserData(SharedPreferences sp) {
+        String s = sp.getString("name", "");
+        if (s==null || s.equals("")) {
+            s=android.os.Build.MODEL;
+        }
+        return s;
     }
 
     /**

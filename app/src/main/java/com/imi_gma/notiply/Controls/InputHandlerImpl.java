@@ -3,17 +3,17 @@ package com.imi_gma.notiply.Controls;
 import android.graphics.Bitmap;
 import android.view.MotionEvent;
 
-import com.imi_gma.notiply.Models.ImageImpl;
+import com.imi_gma.notiply.Models.Image;
 
 /**
  * Controls the inputs and hands them on
  */
 public class InputHandlerImpl implements InputHandler{
-    private final ImageImpl image;
+    private final Image image;
     private final Persistence persist;
 
-    public InputHandlerImpl(ImageImpl newImage) {
-        persist = new Persistence();
+    public InputHandlerImpl(Image newImage) {
+        persist = Persistence.getInstance();
         image = newImage;
     }
 

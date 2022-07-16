@@ -5,6 +5,7 @@ import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
@@ -34,6 +35,7 @@ public class DrawingPage extends AppCompatActivity {
         int width = getResources().getDisplayMetrics().widthPixels;
         int height = getResources().getDisplayMetrics().heightPixels;
 
+        //TODO: Use Image interface instead!
         ImageImpl image = findViewById(R.id.imageView);
         inputHandler = new InputHandlerImpl(image);
         inputHandler.initImage(width, height);
@@ -84,11 +86,11 @@ public class DrawingPage extends AppCompatActivity {
         btnColorPicker = findViewById(R.id.btnColorPicker);
         btnPaintDelete = findViewById(R.id.btnPaintDelete);
 
-//        btnColorBlack = findViewById(R.id.btnColorBlack);
-//        btnColorBlue = findViewById(R.id.btnColorBlue);
-//        btnColorGreen = findViewById(R.id.btnColorGreen);
-//        btnColorRed = findViewById(R.id.btnColorRed);
-//        btnColorYellow = findViewById(R.id.btnColorYellow);
+        btnColorBlack = findViewById(R.id.btnColorBlack);
+        btnColorBlue = findViewById(R.id.btnColorBlue);
+        btnColorGreen = findViewById(R.id.btnColorGreen);
+        btnColorRed = findViewById(R.id.btnColorRed);
+        btnColorYellow = findViewById(R.id.btnColorYellow);
     }
 
     private void setListeners() {
@@ -103,26 +105,26 @@ public class DrawingPage extends AppCompatActivity {
         btnPaintDelete.setOnClickListener(view -> {
             inputHandler.clearImage();
         });
+        //TODO: Check why R.color.green and such don't work...
+        btnColorBlack.setOnClickListener(view -> {
+            inputHandler.setBrushColor(Color.BLACK);
+        });
 
-//        btnColorBlack.setOnClickListener(view -> {
-//            inputHandler.setBrushColor(R.color.black);
-//        });
-//
-//        btnColorBlue.setOnClickListener(view -> {
-//            inputHandler.setBrushColor(R.color.blue);
-//        });
-//
-//        btnColorGreen.setOnClickListener(view -> {
-//            inputHandler.setBrushColor(R.color.green);
-//        });
-//
-//        btnColorRed.setOnClickListener(view -> {
-//            inputHandler.setBrushColor(R.color.red);
-//        });
-//
-//        btnColorYellow.setOnClickListener(view -> {
-//            inputHandler.setBrushColor(R.color.yellow);
-//        });
+        btnColorBlue.setOnClickListener(view -> {
+            inputHandler.setBrushColor(Color.BLUE);
+        });
+
+        btnColorGreen.setOnClickListener(view -> {
+            inputHandler.setBrushColor(Color.GREEN);
+        });
+
+        btnColorRed.setOnClickListener(view -> {
+            inputHandler.setBrushColor(Color.RED);
+        });
+
+        btnColorYellow.setOnClickListener(view -> {
+            inputHandler.setBrushColor(Color.YELLOW);
+        });
     }
 
     private  boolean isWriteStoragePermissionGranted() {

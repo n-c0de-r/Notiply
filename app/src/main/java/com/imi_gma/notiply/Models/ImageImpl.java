@@ -77,6 +77,19 @@ public class ImageImpl extends View implements Image {
         paintBrush.setColor(brushColor);
     }
 
+    // For testing
+    public int getBrushColor() {
+        return paintBrush.getColor();
+    }
+    public void setBrushWidth(int width) {
+        brushWidth = width;
+        paintBrush.setStrokeWidth(brushWidth);
+    }
+
+    public int getBrushWidth() {
+        return (int) paintBrush.getStrokeWidth();
+    }
+
     @Override
     public void undo() {
         if (userPaths.size() > 0) {
