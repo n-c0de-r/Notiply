@@ -1,6 +1,7 @@
 package com.imi_gma.notiply;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 import android.app.Activity;
 import android.content.Context;
@@ -33,10 +34,12 @@ public class testBrush {
 
     @Test
     public void testBrushColor() {
-        int color = Color.BLACK;
+        int previous = image.getBrushColor();
+        int color = Color.BLUE;
         image.setColor(color);
 
         assertEquals(image.getBrushColor(), color);
+        assertNotEquals(previous, color);
     }
 
     @Test
